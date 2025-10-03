@@ -1,0 +1,105 @@
+---
+title: "Midterm Notes"
+subtitle: "Datasci 306"
+description: "Midterm Thursday 10/9 during lecture"
+format: html
+execute:
+    warning: false
+    message: false
+---
+
+```{r}
+#library(tidyverse)
+suppressPackageStartupMessages(suppressWarnings(library(tidyverse)))
+library(dplyr)
+library(ggplot2)
+```
+
+## Lecture 1: 8-26
+
+```{r}
+heights <- read_csv("https://ds306.org/data/survey1.csv")
+glimpse(heights)
+```
+
+#### Vectors
+
+```{r}
+c(1,2,3)
+```
+```{r}
+1:10
+```
+```{r}
+c(1,2,3)[3]
+```
+
+#### Operations on Dataframes
+
+```{r}
+#help(glimpse)
+glimpse(heights)
+```
+```{r}
+#help(summary)
+summary(heights)
+```
+```{r}
+#df$colName
+heights$`What is your height? (use whichever units you prefer)`
+```
+
+###### Renaming Columns
+
+```{r}
+#og colnames
+colnames(heights)
+#Rename Columns
+colnames(heights) <- c("timestamp", "sex", "height")
+glimpse(heights)
+```
+
+```{r}
+ncol(heights)
+nrow(heights)
+```
+
+```{r}
+mean(c(1,2,3))
+```
+
+```{r}
+#Will return 96.6379 - not under same unit (cm or in), 
+#too high or too low
+mean(heights$height)
+```
+
+```{r}
+#Hist looks wierd b/c the diff in units
+hist(heights$height)
+```
+
+```{r}
+#Reassign so can type faster
+h <- heights$height
+```
+
+```{r}
+#return a vector of bools
+h < 200
+```
+
+```{r}
+#Removes heights where h < 200 is false
+not_big <- h < 200
+h[not_big]
+```
+```{r}
+length(h)
+length(h[not_big])
+```
+```{r}
+hist(h[not_big])
+```
+
+#### leave off @ 55:15
