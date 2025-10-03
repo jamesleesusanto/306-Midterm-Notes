@@ -318,11 +318,244 @@ $ height    &lt;dbl&gt; 72.00, 170.00, 164.00, 6.00, 68.00, 162.00, 1.85, 184.00
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>h[h <span class="sc">&lt;</span> <span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 6.0000 1.8500 6.0000 6.0000 6.0000 1.0000 5.6500 6.2000 6.0000 1.8900
+[11] 6.0000 5.3000 6.0000 5.4000 5.1100 1.7000 5.0000 0.0017 5.4000 5.4000
+[21] 5.6000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(h[h <span class="sc">&lt;</span> <span class="dv">10</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>h_kept <span class="ot">&lt;-</span> h[(h <span class="sc">&gt;=</span> <span class="dv">50</span>) <span class="sc">&amp;</span> (h <span class="sc">&lt;=</span> <span class="dv">200</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(h_kept)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>h_cm1 <span class="ot">&lt;-</span> h_kept[h_kept <span class="sc">&lt;</span> <span class="dv">100</span>] <span class="sc">*</span> <span class="fl">2.54</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>h_cm2 <span class="ot">&lt;-</span> h_kept[h_kept <span class="sc">&gt;=</span> <span class="dv">100</span>]</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>h_cm <span class="ot">&lt;-</span> <span class="fu">c</span>(h_cm1, h_cm2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>h_cm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 182.8800 172.7200 177.8000 185.4200 180.3400 162.5600 162.5600 175.2600
+ [9] 172.7200 167.6400 162.5600 177.8000 160.0200 180.3400 175.2600 175.2600
+[17] 170.1800 170.1800 185.4200 170.1800 170.1800 162.5600 165.1000 193.0400
+[25] 172.7200 180.3400 175.2600 177.8000 152.4000 185.4200 177.8000 172.7200
+[33] 157.4800 182.8800 175.2600 177.8000 180.3400 167.6400 180.3400 165.1000
+[41] 177.8000 177.8000 180.3400 167.6400 162.5600 139.7000 167.6400 165.1000
+[49] 157.4800 157.4800 175.2600 161.9758 167.6400 177.8000 177.8000 139.7000
+[57] 170.0000 164.0000 162.0000 184.0000 178.0000 178.0000 172.0000 160.0000
+[65] 183.0000 175.0000 181.0000 165.0000 175.0000 176.0000 162.0000 175.0000
+[73] 180.0000 172.0000 165.0000 174.0000 172.0000 176.0000 161.0000 165.0000
+[81] 165.0000 163.0000 157.0000 172.0000 156.0000 168.0000 180.0000 160.0000
+[89] 173.0000 173.0000 157.0000 163.0000 171.0000 177.0000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(h_cm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="leave-off-5515" class="level4">
-<h4 class="anchored" data-anchor-id="leave-off-5515">leave off @ 55:15</h4>
+<section id="histogram-breaks" class="level4">
+<h4 class="anchored" data-anchor-id="histogram-breaks">Histogram Breaks</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(h_cm, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(h_cm, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-26-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
+<section id="categorial-variables" class="level3">
+<h3 class="anchored" data-anchor-id="categorial-variables">Categorial Variables</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>heights<span class="sc">$</span>sex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "Male"              "Male"              "Female"           
+  [4] "Male"              "Male"              "Female"           
+  [7] "Male"              "Male"              "Male"             
+ [10] "Male"              "Male"              "Female"           
+ [13] "Male"              "Male"              "Male"             
+ [16] "Female"            "Male"              "Male"             
+ [19] "Female"            "Male"              "Male"             
+ [22] "Male"              "Male"              "Male"             
+ [25] "Male"              "Male"              "Male"             
+ [28] "Female"            "Male"              "Male"             
+ [31] "Female"            "Female"            "Male"             
+ [34] "Male"              "Male"              "Female"           
+ [37] "Male"              "Male"              "Male"             
+ [40] "Male"              "Female"            "Female"           
+ [43] "Male"              "Female"            "Male"             
+ [46] "Male"              "Male"              "Male"             
+ [49] "Female"            "Male"              "Male"             
+ [52] "Female"            "Male"              "Female"           
+ [55] "Male"              "Male"              "Female"           
+ [58] "Female"            "Female"            "Male"             
+ [61] "Male"              "Male"              "Male"             
+ [64] "Male"              "Male"              "Male"             
+ [67] "Female"            "Female"            "Female"           
+ [70] "Male"              "Female"            "Female"           
+ [73] "Female"            "Male"              "Male"             
+ [76] "Male"              "Female"            "Male"             
+ [79] "Male"              "Male"              "Male"             
+ [82] "Male"              "Female"            "Male"             
+ [85] "Male"              "Female"            "Female"           
+ [88] "Male"              "Male"              "Female"           
+ [91] "Female"            "Male"              "Male"             
+ [94] "Male"              "Male"              "Female"           
+ [97] "Prefer not to say" "Female"            "Female"           
+[100] "Female"            "Male"              "Female"           
+[103] "Male"              "Female"            "Male"             
+[106] "Female"            "Female"            "Female"           
+[109] "Male"              "Female"            "Female"           
+[112] "Male"              "Female"            "Male"             
+[115] "Male"              "Male"              "Male"             
+[118] "Female"           </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(heights<span class="sc">$</span>sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+           Female              Male Prefer not to say 
+               43                74                 1 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prop table</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(heights<span class="sc">$</span>sex))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+           Female              Male Prefer not to say 
+      0.364406780       0.627118644       0.008474576 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> heights<span class="sc">$</span>sex</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>h[s <span class="sc">==</span> <span class="st">"Female"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 164.00 162.00 510.00 160.00  48.00   1.00  64.00 176.00 162.00  66.00
+[11]  64.00  63.00   5.30 165.00  67.00  64.00   5.40  65.00 161.00  70.00
+[21]  60.00 165.00 163.00 157.00  62.00 156.00   1.70   5.00  65.00 168.00
+[31]  66.00  64.00  55.00   5.40  65.00  62.00 173.00   5.40 157.00  63.77
+[41] 163.00  70.00  55.00</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dplyer</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">filter</span>(heights, height <span class="sc">&gt;=</span> <span class="dv">50</span>, height <span class="sc">&lt;=</span> <span class="dv">200</span>)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co">#if height &lt; 100; multiply by 2.54, otherwise leave it alone</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Put it in new col called scaled_height</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df, <span class="at">scaled_height =</span> <span class="fu">ifelse</span>(height <span class="sc">&lt;</span> <span class="dv">100</span>, <span class="fl">2.54</span> <span class="sc">*</span> height, height))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df2<span class="sc">$</span>scaled_height)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(df2, sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 94 × 4
+# Groups:   sex [3]
+   timestamp          sex    height scaled_height
+   &lt;chr&gt;              &lt;chr&gt;   &lt;dbl&gt;         &lt;dbl&gt;
+ 1 8/26/2025 7:23:17  Male       72          183.
+ 2 8/26/2025 14:51:26 Male      170          170 
+ 3 8/26/2025 14:51:26 Female    164          164 
+ 4 8/26/2025 14:51:31 Male       68          173.
+ 5 8/26/2025 14:51:31 Female    162          162 
+ 6 8/26/2025 14:51:32 Male      184          184 
+ 7 8/26/2025 14:51:32 Male      178          178 
+ 8 8/26/2025 14:51:33 Male       70          178.
+ 9 8/26/2025 14:51:34 Male      178          178 
+10 8/26/2025 14:51:37 Male       73          185.
+# ℹ 84 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean height of df2 groups by sex</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Conditional Mean</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="fu">group_by</span>(df2, sex), <span class="fu">mean</span>(scaled_height))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  sex               `mean(scaled_height)`
+  &lt;chr&gt;                             &lt;dbl&gt;
+1 Female                             163.
+2 Male                               176.
+3 Prefer not to say                  160 </code></pre>
+</div>
+</div>
+</section>
+<section id="ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="ggplot">ggplot</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df2) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>scaled_height, <span class="at">fill=</span>sex))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distributions by sex</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df2) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>scaled_height)) <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="sc">~</span> sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lecture-2-8-28" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-2-8-28">Lecture 2: 8-28</h2>
 </section>
 
 </main>

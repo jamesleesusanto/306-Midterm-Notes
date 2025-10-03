@@ -102,4 +102,87 @@ length(h[not_big])
 hist(h[not_big])
 ```
 
-#### leave off @ 55:15
+```{r}
+h[h < 10]
+```
+
+```{r}
+length(h[h < 10])
+```
+
+```{r}
+h_kept <- h[(h >= 50) & (h <= 200)]
+```
+
+```{r}
+hist(h_kept)
+```
+
+```{r}
+h_cm1 <- h_kept[h_kept < 100] * 2.54
+h_cm2 <- h_kept[h_kept >= 100]
+
+h_cm <- c(h_cm1, h_cm2)
+```
+```{r}
+h_cm
+```
+
+```{r}
+hist(h_cm)
+```
+#### Histogram Breaks
+```{r}
+hist(h_cm, breaks = c(100))
+hist(h_cm, breaks = c(10))
+```
+
+### Categorial Variables
+
+```{r}
+heights$sex
+```
+```{r}
+table(heights$sex)
+```
+```{r}
+# prop table
+prop.table(table(heights$sex))
+```
+```{r}
+s <- heights$sex
+
+h[s == "Female"]
+```
+```{r}
+#dplyer
+df <- filter(heights, height >= 50, height <= 200)
+#if height < 100; multiply by 2.54, otherwise leave it alone
+#Put it in new col called scaled_height
+df2 <- mutate(df, scaled_height = ifelse(height < 100, 2.54 * height, height))
+```
+```{r}
+hist(df2$scaled_height)
+```
+```{r}
+group_by(df2, sex)
+```
+```{r}
+# Mean height of df2 groups by sex
+# Conditional Mean
+summarize(group_by(df2, sex), mean(scaled_height))
+```
+
+### ggplot
+```{r}
+#ggplot
+ggplot(df2) + geom_histogram(aes(x=scaled_height, fill=sex))
+```
+```{r}
+#Distributions by sex
+ggplot(df2) + geom_histogram(aes(x=scaled_height)) + facet_grid(~ sex)
+```
+
+
+## Lecture 2: 8-28
+
