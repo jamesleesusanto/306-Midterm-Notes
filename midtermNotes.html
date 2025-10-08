@@ -556,6 +556,940 @@ $ height    &lt;dbl&gt; 72.00, 170.00, 164.00, 6.00, 68.00, 162.00, 1.85, 184.00
 </section>
 <section id="lecture-2-8-28" class="level2">
 <h2 class="anchored" data-anchor-id="lecture-2-8-28">Lecture 2: 8-28</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>survey1 <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"survey1.csv"</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(survey1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 118
+Columns: 3
+$ Timestamp                                               &lt;chr&gt; "8/26/2025 7:2…
+$ `What is your sex?`                                     &lt;chr&gt; "Male", "Male"…
+$ `What is your height? (use whichever units you prefer)` &lt;dbl&gt; 72.00, 170.00,…</code></pre>
+</div>
+</div>
+<section id="dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe">Dataframe</h3>
+<p>A container of a bunch of vectors</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(survey1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 118</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(survey1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"rows"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] ".rowSums"           "arrows"             "auto_browse"       
+ [4] "bind_rows"          "browseEnv"          "browser"           
+ [7] "browserCondition"   "browserSetDebug"    "browserText"       
+[10] "browseURL"          "browseVignettes"    "cur_group_rows"    
+[13] "db_query_rows"      "group_rows"         "panel_rows"        
+[16] "rows_append"        "rows_delete"        "rows_insert"       
+[19] "rows_patch"         "rows_update"        "rows_upsert"       
+[22] "rowsum"             "rowsum.data.frame"  "rowsum.default"    
+[25] "rowSums"            "separate_rows"      "separate_rows_"    
+[28] "xpdrows.data.frame"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(survey1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Timestamp         What is your sex? 
+ Length:118         Length:118        
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      
+ What is your height? (use whichever units you prefer)
+ Min.   :  0.0017                                     
+ 1st Qu.: 63.8275                                     
+ Median : 70.0000                                     
+ Mean   : 96.6379                                     
+ 3rd Qu.:163.7500                                     
+ Max.   :511.0000                                     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'timestamp'</span>, <span class="st">'sex'</span>, <span class="st">'height'</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>survey1<span class="sc">$</span>height</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1]  72.0000 170.0000 164.0000   6.0000  68.0000 162.0000   1.8500 184.0000
+  [9] 178.0000  70.0000 178.0000 510.0000   6.0000  73.0000 172.0000 160.0000
+ [17]   6.0000   6.0000  48.0000 183.0000  71.0000 175.0000 181.0000 165.0000
+ [25] 511.0000  64.0000 175.0000   1.0000   5.6500   6.2000  64.0000 176.0000
+ [33]   6.0000  69.0000   1.8900 162.0000  68.0000 175.0000   6.0000 180.0000
+ [41]  66.0000  64.0000  70.0000  63.0000  71.0000  69.0000  69.0000  67.0000
+ [49]   5.3000 172.0000  67.0000 165.0000  73.0000  67.0000   6.0000  67.0000
+ [57]  64.0000   5.4000  65.0000  76.0000 174.0000  68.0000 172.0000  71.0000
+ [65]  69.0000 176.0000 161.0000  70.0000  60.0000 165.0000 165.0000 163.0000
+ [73] 157.0000  73.0000  70.0000  68.0000  62.0000  72.0000   5.1100  69.0000
+ [81]  70.0000 172.0000 156.0000  71.0000  66.0000   1.7000   5.0000   0.0017
+ [89]  71.0000  65.0000 168.0000  70.0000  70.0000 180.0000  71.0000  66.0000
+ [97] 160.0000  64.0000  55.0000   5.4000  66.0000  65.0000 173.0000  62.0000
+[105]  62.0000 173.0000   5.4000 157.0000  69.0000  63.7700 163.0000  66.0000
+[113]  70.0000 171.0000   5.6000 177.0000  70.0000  55.0000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(survey1<span class="sc">$</span>height)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 96.6379</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(survey1<span class="sc">$</span>height)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 81.55318</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(survey1<span class="sc">$</span>height)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 70</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first element</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>survey1<span class="sc">$</span>height[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 72</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#last element</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>survey1<span class="sc">$</span>height[<span class="fu">length</span>(survey1<span class="sc">$</span>height)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 55</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Access entry &gt; 70</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>mask <span class="ot">&lt;-</span> survey1<span class="sc">$</span>height <span class="sc">&gt;</span> <span class="dv">70</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>survey1<span class="sc">$</span>height[mask]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  72 170 164 162 184 178 178 510  73 172 160 183  71 175 181 165 511 175 176
+[20] 162 175 180  71 172 165  73  76 174 172  71 176 161 165 165 163 157  73  72
+[39] 172 156  71  71 168 180  71 160 173 173 157 163 171 177</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mask)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.440678</code></pre>
+</div>
+</div>
+</section>
+<section id="cleaning-data" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sorted entris of survey$heights</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(survey1<span class="sc">$</span>height)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1]   0.0017   1.0000   1.7000   1.8500   1.8900   5.0000   5.1100   5.3000
+  [9]   5.4000   5.4000   5.4000   5.6000   5.6500   6.0000   6.0000   6.0000
+ [17]   6.0000   6.0000   6.0000   6.0000   6.2000  48.0000  55.0000  55.0000
+ [25]  60.0000  62.0000  62.0000  62.0000  63.0000  63.7700  64.0000  64.0000
+ [33]  64.0000  64.0000  64.0000  65.0000  65.0000  65.0000  66.0000  66.0000
+ [41]  66.0000  66.0000  66.0000  67.0000  67.0000  67.0000  67.0000  68.0000
+ [49]  68.0000  68.0000  68.0000  69.0000  69.0000  69.0000  69.0000  69.0000
+ [57]  69.0000  70.0000  70.0000  70.0000  70.0000  70.0000  70.0000  70.0000
+ [65]  70.0000  70.0000  71.0000  71.0000  71.0000  71.0000  71.0000  71.0000
+ [73]  72.0000  72.0000  73.0000  73.0000  73.0000  76.0000 156.0000 157.0000
+ [81] 157.0000 160.0000 160.0000 161.0000 162.0000 162.0000 163.0000 163.0000
+ [89] 164.0000 165.0000 165.0000 165.0000 165.0000 168.0000 170.0000 171.0000
+ [97] 172.0000 172.0000 172.0000 172.0000 173.0000 173.0000 174.0000 175.0000
+[105] 175.0000 175.0000 176.0000 176.0000 177.0000 178.0000 178.0000 180.0000
+[113] 180.0000 181.0000 183.0000 184.0000 510.0000 511.0000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>my_data <span class="sc">&lt;</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE FALSE  TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(my_data <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">"neg"</span>, <span class="st">"pos"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "pos" "pos" "pos" "pos" "neg"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">na.rm=</span>T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+</section>
+<section id="dplyr" class="level3">
+<h3 class="anchored" data-anchor-id="dplyr">dplyr</h3>
+<section id="filter" class="level4">
+<h4 class="anchored" data-anchor-id="filter">filter</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(survey1, height <span class="sc">==</span> <span class="dv">70</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 3
+  timestamp          sex    height
+  &lt;chr&gt;              &lt;chr&gt;   &lt;dbl&gt;
+1 8/26/2025 14:51:33 Male       70
+2 8/26/2025 14:51:53 Male       70
+3 8/26/2025 14:52:05 Female     70
+4 8/26/2025 14:52:08 Male       70
+5 8/26/2025 14:52:11 Male       70
+6 8/26/2025 14:52:21 Male       70
+7 8/26/2025 14:52:22 Male       70
+8 8/26/2025 14:52:54 Female     70
+9 8/26/2025 15:03:56 Male       70</code></pre>
+</div>
+</div>
+</section>
+<section id="sorting-with-arrange" class="level4">
+<h4 class="anchored" data-anchor-id="sorting-with-arrange">Sorting with arrange()</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="do">##ascending by default, use desc for descending</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(survey1, <span class="fu">desc</span>(height))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 118 × 3
+   timestamp          sex    height
+   &lt;chr&gt;              &lt;chr&gt;   &lt;dbl&gt;
+ 1 8/26/2025 14:51:45 Male      511
+ 2 8/26/2025 14:51:36 Female    510
+ 3 8/26/2025 14:51:32 Male      184
+ 4 8/26/2025 14:51:40 Male      183
+ 5 8/26/2025 14:51:43 Male      181
+ 6 8/26/2025 14:51:51 Male      180
+ 7 8/26/2025 14:52:26 Male      180
+ 8 8/26/2025 14:51:32 Male      178
+ 9 8/26/2025 14:51:34 Male      178
+10 8/26/2025 14:55:01 Male      177
+# ℹ 108 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="filtering-columns-with-select" class="level4">
+<h4 class="anchored" data-anchor-id="filtering-columns-with-select">filtering columns with select()</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(survey1, sex, height)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 118 × 2
+   sex    height
+   &lt;chr&gt;   &lt;dbl&gt;
+ 1 Male    72   
+ 2 Male   170   
+ 3 Female 164   
+ 4 Male     6   
+ 5 Male    68   
+ 6 Female 162   
+ 7 Male     1.85
+ 8 Male   184   
+ 9 Male   178   
+10 Male    70   
+# ℹ 108 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(survey1, <span class="sc">-</span>timestamp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 118 × 2
+   sex    height
+   &lt;chr&gt;   &lt;dbl&gt;
+ 1 Male    72   
+ 2 Male   170   
+ 3 Female 164   
+ 4 Male     6   
+ 5 Male    68   
+ 6 Female 162   
+ 7 Male     1.85
+ 8 Male   184   
+ 9 Male   178   
+10 Male    70   
+# ℹ 108 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="column-operation-with-mutate" class="level4">
+<h4 class="anchored" data-anchor-id="column-operation-with-mutate">column operation with mutate()</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creates new cols in df that are calculated w/ existing dfs</span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(survey1, <span class="at">height_cm =</span> height <span class="sc">*</span> <span class="fl">2.54</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 118 × 4
+   timestamp          sex    height height_cm
+   &lt;chr&gt;              &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+ 1 8/26/2025 7:23:17  Male    72       183.  
+ 2 8/26/2025 14:51:26 Male   170       432.  
+ 3 8/26/2025 14:51:26 Female 164       417.  
+ 4 8/26/2025 14:51:28 Male     6        15.2 
+ 5 8/26/2025 14:51:31 Male    68       173.  
+ 6 8/26/2025 14:51:31 Female 162       411.  
+ 7 8/26/2025 14:51:32 Male     1.85      4.70
+ 8 8/26/2025 14:51:32 Male   184       467.  
+ 9 8/26/2025 14:51:32 Male   178       452.  
+10 8/26/2025 14:51:33 Male    70       178.  
+# ℹ 108 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-pipelines" class="level4">
+<h4 class="anchored" data-anchor-id="creating-pipelines">Creating Pipelines</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>survey1_final <span class="ot">&lt;-</span> survey1 <span class="sc">|&gt;</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">between</span>(height, <span class="dv">150</span>, <span class="dv">200</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(height) <span class="sc">|&gt;</span></span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(sex, height)</span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>survey1_final</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 38 × 2
+   sex               height
+   &lt;chr&gt;              &lt;dbl&gt;
+ 1 Female               156
+ 2 Female               157
+ 3 Female               157
+ 4 Female               160
+ 5 Prefer not to say    160
+ 6 Female               161
+ 7 Female               162
+ 8 Female               162
+ 9 Female               163
+10 Female               163
+# ℹ 28 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="lecture-3-9-2" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-3-9-2">Lecture 3: 9-2</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>survey1 <span class="sc">|&gt;</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>((height <span class="sc">&gt;</span> <span class="dv">400</span>) <span class="sc">|</span> <span class="fu">between</span>(height, <span class="dv">4</span>, <span class="dv">7</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="st">"height"</span>) <span class="ot">-&gt;</span> height_gpt</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>height_gpt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   6.00 510.00   6.00   6.00   6.00 511.00   5.65   6.20   6.00   6.00
+[11]   5.30   6.00   5.40   5.11   5.00   5.40   5.40   5.60</code></pre>
+</div>
+</div>
+</section>
+<section id="lecture-4-9-4" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-4-9-4">Lecture 4: 9-4</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>flights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 336,766 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Which airport is busiest</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">group_by</span>(origin) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  origin      n
+  &lt;chr&gt;   &lt;int&gt;
+1 EWR    120835
+2 JFK    111279
+3 LGA    104662</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(flights, origin, dest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 224 × 3
+   origin dest      n
+   &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
+ 1 EWR    ALB     439
+ 2 EWR    ANC       8
+ 3 EWR    ATL    5022
+ 4 EWR    AUS     968
+ 5 EWR    AVL     265
+ 6 EWR    BDL     443
+ 7 EWR    BNA    2336
+ 8 EWR    BOS    5327
+ 9 EWR    BQN     297
+10 EWR    BTV     931
+# ℹ 214 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co">#which month is busiest</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month     n
+   &lt;int&gt; &lt;int&gt;
+ 1     1 27004
+ 2     2 24951
+ 3     3 28834
+ 4     4 28330
+ 5     5 28796
+ 6     6 28243
+ 7     7 29425
+ 8     8 29327
+ 9     9 27574
+10    10 28889
+11    11 27268
+12    12 28135</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">#top 5 busiest days</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(month, day) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 365 × 3
+   month   day     n
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1    11    27  1014
+ 2     7    11  1006
+ 3     7     8  1004
+ 4     7    10  1004
+ 5    12     2  1004
+ 6     7    18  1003
+ 7     7    25  1003
+ 8     7    12  1002
+ 9     7     9  1001
+10     7    17  1001
+# ℹ 355 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co">#least busiest days 5</span></span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(year, month, day) <span class="sc">|&gt;</span> <span class="fu">top_n</span>(<span class="dv">5</span>, <span class="sc">-</span>n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+   year month   day     n
+  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+1  2013     1    19   674
+2  2013     1    26   680
+3  2013     8    31   680
+4  2013    10    12   676
+5  2013    11    28   634
+6  2013    11    29   661</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Which carrier has highest delay</span></span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span> </span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avg_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span></span>
+<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="sc">-</span>avg_delay)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 2
+   carrier avg_delay
+   &lt;chr&gt;       &lt;dbl&gt;
+ 1 F9          20.2 
+ 2 EV          20.0 
+ 3 YV          19.0 
+ 4 FL          18.7 
+ 5 WN          17.7 
+ 6 9E          16.7 
+ 7 B6          13.0 
+ 8 VX          12.9 
+ 9 OO          12.6 
+10 UA          12.1 
+11 MQ          10.6 
+12 DL           9.26
+13 AA           8.59
+14 AS           5.80
+15 HA           4.90
+16 US           3.78</code></pre>
+</div>
+</div>
+<section id="relational-data" class="level3">
+<h3 class="anchored" data-anchor-id="relational-data">relational data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>airlines</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 2
+   carrier name                       
+   &lt;chr&gt;   &lt;chr&gt;                      
+ 1 9E      Endeavor Air Inc.          
+ 2 AA      American Airlines Inc.     
+ 3 AS      Alaska Airlines Inc.       
+ 4 B6      JetBlue Airways            
+ 5 DL      Delta Air Lines Inc.       
+ 6 EV      ExpressJet Airlines Inc.   
+ 7 F9      Frontier Airlines Inc.     
+ 8 FL      AirTran Airways Corporation
+ 9 HA      Hawaiian Airlines Inc.     
+10 MQ      Envoy Air                  
+11 OO      SkyWest Airlines Inc.      
+12 UA      United Air Lines Inc.      
+13 US      US Airways Inc.            
+14 VX      Virgin America             
+15 WN      Southwest Airlines Co.     
+16 YV      Mesa Airlines Inc.         </code></pre>
+</div>
+</div>
+<section id="left_join" class="level4">
+<h4 class="anchored" data-anchor-id="left_join">left_join()</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span> </span>
+<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avg_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span></span>
+<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(airlines, <span class="at">by =</span> <span class="st">"carrier"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="sc">-</span>avg_delay)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 3
+   carrier avg_delay name                       
+   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;                      
+ 1 F9          20.2  Frontier Airlines Inc.     
+ 2 EV          20.0  ExpressJet Airlines Inc.   
+ 3 YV          19.0  Mesa Airlines Inc.         
+ 4 FL          18.7  AirTran Airways Corporation
+ 5 WN          17.7  Southwest Airlines Co.     
+ 6 9E          16.7  Endeavor Air Inc.          
+ 7 B6          13.0  JetBlue Airways            
+ 8 VX          12.9  Virgin America             
+ 9 OO          12.6  SkyWest Airlines Inc.      
+10 UA          12.1  United Air Lines Inc.      
+11 MQ          10.6  Envoy Air                  
+12 DL           9.26 Delta Air Lines Inc.       
+13 AA           8.59 American Airlines Inc.     
+14 AS           5.80 Alaska Airlines Inc.       
+15 HA           4.90 Hawaiian Airlines Inc.     
+16 US           3.78 US Airways Inc.            </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>airports <span class="sc">|&gt;</span> <span class="fu">filter</span>(faa <span class="sc">==</span> <span class="st">"DTW"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 8
+  faa   name                     lat   lon   alt    tz dst   tzone           
+  &lt;chr&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           
+1 DTW   Detroit Metro Wayne Co  42.2 -83.4   645    -5 A     America/New_York</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do ppl fly south in the winter?</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(airports, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"dest"</span> <span class="ot">=</span> <span class="st">"faa"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb135-5"><a href="#cb135-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(month, lat) <span class="sc">|&gt;</span></span>
+<span id="cb135-6"><a href="#cb135-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb135-7"><a href="#cb135-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean_abs_lat =</span> <span class="fu">mean</span>(<span class="fu">abs</span>(lat), <span class="at">na.rm =</span> T))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month mean_abs_lat
+   &lt;int&gt;        &lt;dbl&gt;
+ 1     1         35.9
+ 2     2         35.9
+ 3     3         35.7
+ 4     4         35.8
+ 5     5         36.2
+ 6     6         36.2
+ 7     7         36.2
+ 8     8         36.2
+ 9     9         36.3
+10    10         36.2
+11    11         35.9
+12    12         35.7</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="lecture-5-9-9" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-5-9-9">Lecture 5: 9-9</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"spotify_mpd_001.RData"</span>)</span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a>playlist <span class="sc">|&gt;</span> <span class="fu">sample_frac</span>(<span class="fl">0.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 10
+       id    pid name            collaborative modified_at num_tracks num_albums
+    &lt;int&gt;  &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;         &lt;date&gt;           &lt;int&gt;      &lt;int&gt;
+ 1 132011 132010 "Chill"         FALSE         2017-09-17          70         61
+ 2 722568 722567 "EDM Party"     FALSE         2017-10-14         105         97
+ 3 126805 126804 "Anos 2000"     FALSE         2017-10-22          74         64
+ 4 433319 433318 "Acoustic Guit… FALSE         2014-08-27          91         44
+ 5  60938  60937 "Q2"            FALSE         2016-09-10         208        187
+ 6 732154 732153 "dub"           FALSE         2015-10-23          25         25
+ 7 352226 352225 "Real Music "   FALSE         2017-07-16          43         37
+ 8 151700 151699 "sampled"       FALSE         2016-12-20          12         10
+ 9 118661 118660 "my fav songs"  FALSE         2017-05-11          44         29
+10 627796 627795 "First"         TRUE          2013-12-10         143         26
+# ℹ 3 more variables: num_followers &lt;int&gt;, duration_ms &lt;int&gt;, num_artists &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>artist <span class="sc">|&gt;</span> <span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">9019</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+     id name         
+  &lt;int&gt; &lt;chr&gt;        
+1  9019 Nipsey Hussle</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>track <span class="sc">|&gt;</span> <span class="fu">left_join</span>(artist, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"artist_id"</span> <span class="ot">=</span> <span class="st">"id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 33,620 × 5
+      id track_name         duration_ms artist_id name               
+   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt;     &lt;int&gt; &lt;chr&gt;              
+ 1    57 Still Got Time          188490    211800 ZAYN               
+ 2    62 It's Alright Now        249946    144928 Bombay Bicycle Club
+ 3   139 Yee - Original Mix      210000    246984 Deorro             
+ 4   245 La belle âme            220879    176325 Fakear             
+ 5   265 Ready to Bleed          212040    279904 Prayers            
+ 6   577 Kundiman                339053    181828 Silent Sanctuary   
+ 7   765 Awesome God - Live      318026    268773 Hillsong United    
+ 8   815 Locked Up               235066     37436 Akon               
+ 9   835 Animals                 227840    122096 Sherry?            
+10   853 Diego                   242346    103601 Tory Lanez         
+# ℹ 33,610 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(track_attr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "track_id"         "artists"          "album_name"       "track_name"      
+ [5] "popularity"       "duration_ms"      "explicit"         "danceability"    
+ [9] "energy"           "key"              "loudness"         "mode"            
+[13] "speechiness"      "acousticness"     "instrumentalness" "liveness"        
+[17] "valence"          "tempo"            "time_signature"   "track_genre"     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>track <span class="sc">|&gt;</span> <span class="fu">inner_join</span>(track_attr, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id"</span> <span class="ot">=</span> <span class="st">"track_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,862 × 23
+      id track_name.x    duration_ms.x artist_id artists album_name track_name.y
+   &lt;int&gt; &lt;chr&gt;                   &lt;int&gt;     &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;       
+ 1  4187 Suicidal Thoug…        170226    219633 The No… Ready to … Suicidal Th…
+ 2  6969 Golden Slumber…         91760    133618 The Be… Abbey Roa… Golden Slum…
+ 3  7291 Harlem Shake           196664     79170 Baauer  Harlem Sh… Harlem Shake
+ 4  9732 Holy Is the Lo…        251933    259407 Chris … Arriving   Holy Is The…
+ 5 13754 Hit That Jive          203050     42448 Gramat… SB2        Hit That Ji…
+ 6 17250 Soap                   209426    230385 Melani… Cry Baby … Soap        
+ 7 17281 Play It Again          226866      7361 Luke B… Crash My … Play It Aga…
+ 8 17779 Do You Hear Th…        123160    233311 Aaron … Les Misér… Do You Hear…
+ 9 18781 An Eagle In Yo…        385520     94834 Boards… Music Has… An Eagle In…
+10 19576 Ritual (feat. …        237472    230618 Marshm… Ritual (f… Ritual (fea…
+# ℹ 1,852 more rows
+# ℹ 16 more variables: popularity &lt;dbl&gt;, duration_ms.y &lt;dbl&gt;, explicit &lt;lgl&gt;,
+#   danceability &lt;dbl&gt;, energy &lt;dbl&gt;, key &lt;dbl&gt;, loudness &lt;dbl&gt;, mode &lt;dbl&gt;,
+#   speechiness &lt;dbl&gt;, acousticness &lt;dbl&gt;, instrumentalness &lt;dbl&gt;,
+#   liveness &lt;dbl&gt;, valence &lt;dbl&gt;, tempo &lt;dbl&gt;, time_signature &lt;dbl&gt;,
+#   track_genre &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>playlist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,000 × 10
+       id    pid name            collaborative modified_at num_tracks num_albums
+    &lt;int&gt;  &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;         &lt;date&gt;           &lt;int&gt;      &lt;int&gt;
+ 1 721119 721118 july 15         FALSE         2015-08-02          33         24
+ 2 792404 792403 Pagode          FALSE         2014-05-29          27         19
+ 3 624620 624619 Piano           FALSE         2017-09-03          19         16
+ 4 906302 906301 august '17      FALSE         2017-09-02          47         41
+ 5 347366 347365 Reception play… FALSE         2016-05-13          61         56
+ 6 689931 689930 kewl            FALSE         2017-05-09         179        159
+ 7 530439 530438 Rock            FALSE         2017-10-12         123        101
+ 8 145633 145632 All             FALSE         2017-06-27          81         50
+ 9  56739  56738 Latin Mix       FALSE         2017-10-29          89         82
+10 954479 954478 boii            FALSE         2017-10-21          51         34
+# ℹ 990 more rows
+# ℹ 3 more variables: num_followers &lt;int&gt;, duration_ms &lt;int&gt;, num_artists &lt;int&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>playlist_track</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 66,571 × 3
+   playlist_id   pos track_id
+         &lt;int&gt; &lt;int&gt;    &lt;int&gt;
+ 1        1196     0  1047267
+ 2        1196     1  1834301
+ 3        1196     2   597415
+ 4        1196     3  1173249
+ 5        1196     4  1979927
+ 6        1196     5  1900507
+ 7        1196     6   337753
+ 8        1196     7   599323
+ 9        1196     8   983626
+10        1196     9  2170020
+# ℹ 66,561 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>track <span class="sc">|&gt;</span> </span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(playlist_track, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"id"</span> <span class="ot">=</span> <span class="st">"track_id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(playlist_id <span class="sc">==</span> <span class="st">"1196"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(playlist, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"playlist_id"</span> <span class="ot">=</span> <span class="st">"id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 58 × 15
+       id track_name       duration_ms.x artist_id playlist_id   pos   pid name 
+    &lt;int&gt; &lt;chr&gt;                    &lt;int&gt;     &lt;int&gt;       &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
+ 1  18483 Glorious Ruins …        533146    131194        1196    28  1195 Jesu…
+ 2  63014 I Can Trust You         357533     40650        1196    51  1195 Jesu…
+ 3  75458 Be Thou My Visi…        403053     25765        1196    37  1195 Jesu…
+ 4 139583 Cold Is The Nig…        195011    123084        1196    46  1195 Jesu…
+ 5 170199 The Lord Is Gra…        342920     28544        1196    34  1195 Jesu…
+ 6 191121 I Was Wrong             264657    123084        1196    47  1195 Jesu…
+ 7 296408 Nothing Without…        241746     22369        1196    48  1195 Jesu…
+ 8 337753 Oh How I Need Y…        243493    153985        1196     6  1195 Jesu…
+ 9 341748 You Speak               329613     48043        1196    56  1195 Jesu…
+10 352778 Grace So Glorio…        407253    134425        1196    49  1195 Jesu…
+# ℹ 48 more rows
+# ℹ 7 more variables: collaborative &lt;lgl&gt;, modified_at &lt;date&gt;,
+#   num_tracks &lt;int&gt;, num_albums &lt;int&gt;, num_followers &lt;int&gt;,
+#   duration_ms.y &lt;int&gt;, num_artists &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How many playlists</span></span>
+<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(playlist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How many songs does each playlist have</span></span>
+<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a>playlist<span class="sc">$</span>num_tracks <span class="sc">|&gt;</span> <span class="fu">median</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or </span></span>
+<span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(playlist_track, playlist_id)<span class="sc">$</span>n <span class="sc">|&gt;</span> <span class="fu">median</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co">#How many playlist does each song appear </span></span>
+<span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(playlist_track, track_id) <span class="sc">|&gt;</span> </span>
+<span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(track, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"track_id"</span> <span class="ot">=</span> <span class="st">"id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb159-4"><a href="#cb159-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">top_n</span>(<span class="dv">10</span>, n) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 5
+   track_id     n track_name                          duration_ms artist_id
+      &lt;int&gt; &lt;int&gt; &lt;chr&gt;                                     &lt;int&gt;     &lt;int&gt;
+ 1   149079    42 Mask Off                                 204600     55017
+ 2   315515    42 Location                                 219080    241277
+ 3   573136    48 One Dance                                173986    131668
+ 4   649448    45 iSpy (feat. Lil Yachty)                  253106    183621
+ 5   906631    45 Cut It (feat. Young Dolph)               222600     59814
+ 6  1041890    47 Congratulations                          220293     78225
+ 7  1093026    43 Redbone                                  326933    268292
+ 8  1261051    42 Bad and Boujee (feat. Lil Uzi Vert)      343150    258736
+ 9  1637518    44 Ignition - Remix                         186066    105561
+10  2128660    53 HUMBLE.                                  177000     96864
+11  2218841    43 Shape of You                             233712    252555
+12  2257361    48 Broccoli (feat. Lil Yachty)              225205    203349</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb161"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(playlist_track, track_id) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">mean</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  `mean(n)`
+      &lt;dbl&gt;
+1      1.98</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb163"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co">#When are playlists created</span></span>
+<span id="cb163-2"><a href="#cb163-2" aria-hidden="true" tabindex="-1"></a>playlist <span class="sc">|&gt;</span> <span class="fu">count</span>(modified_at) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb163-3"><a href="#cb163-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> modified_at, <span class="at">y =</span> n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-64-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="song-charts" class="level4">
+<h4 class="anchored" data-anchor-id="song-charts">Song Charts</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"hot100_2017.RData"</span>)</span>
+<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a>hot100_2017</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 567 × 54
+   Song       Artist    w1    w2    w3    w4    w5    w6    w7    w8    w9   w10
+   &lt;chr&gt;      &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 Starboy    The W…     1     3     4     4     5     8     7    12    14    17
+ 2 Black Bea… Rae S…     2     1     2     3     3     6     9    14    16    16
+ 3 Closer     The C…     3     4     3     5     4     3     5     7     5     5
+ 4 24K Magic  Bruno…     4     5     5     7    10    11    12    15    13    15
+ 5 Juju On T… Zay H…     5     6    11    17    18    30    33    42    48    NA
+ 6 Side To S… Arian…     6     7     6     9    12    12    13    18    24    34
+ 7 Let Me Lo… DJ Sn…     7     8     8    14    16    16    18    20    28    31
+ 8 Don't Wan… Maroo…     8    11     7     8     9     7     6     9    17    19
+ 9 Bad Things Machi…     9    12    10    10     6     4     4     5     6    10
+10 Fake Love  Drake     10     9     9    11    11     9     8    11    12    13
+# ℹ 557 more rows
+# ℹ 42 more variables: w11 &lt;dbl&gt;, w12 &lt;dbl&gt;, w13 &lt;dbl&gt;, w14 &lt;dbl&gt;, w15 &lt;dbl&gt;,
+#   w16 &lt;dbl&gt;, w17 &lt;dbl&gt;, w18 &lt;dbl&gt;, w19 &lt;dbl&gt;, w20 &lt;dbl&gt;, w21 &lt;dbl&gt;,
+#   w22 &lt;dbl&gt;, w23 &lt;dbl&gt;, w24 &lt;dbl&gt;, w25 &lt;dbl&gt;, w26 &lt;dbl&gt;, w27 &lt;dbl&gt;,
+#   w28 &lt;dbl&gt;, w29 &lt;dbl&gt;, w30 &lt;dbl&gt;, w31 &lt;dbl&gt;, w32 &lt;dbl&gt;, w33 &lt;dbl&gt;,
+#   w34 &lt;dbl&gt;, w35 &lt;dbl&gt;, w36 &lt;dbl&gt;, w37 &lt;dbl&gt;, w38 &lt;dbl&gt;, w39 &lt;dbl&gt;,
+#   w40 &lt;dbl&gt;, w41 &lt;dbl&gt;, w42 &lt;dbl&gt;, w43 &lt;dbl&gt;, w44 &lt;dbl&gt;, w45 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="pivot" class="level3">
+<h3 class="anchored" data-anchor-id="pivot">Pivot</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb166"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Find average rank</span></span>
+<span id="cb166-2"><a href="#cb166-2" aria-hidden="true" tabindex="-1"></a>hot100_long <span class="ot">&lt;-</span></span>
+<span id="cb166-3"><a href="#cb166-3" aria-hidden="true" tabindex="-1"></a>    hot100_2017 <span class="sc">|&gt;</span> </span>
+<span id="cb166-4"><a href="#cb166-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"w"</span>),</span>
+<span id="cb166-5"><a href="#cb166-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">names_prefix =</span> <span class="st">"w"</span>,</span>
+<span id="cb166-6"><a href="#cb166-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
+<span id="cb166-7"><a href="#cb166-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">values_to =</span> <span class="st">"rank"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb166-8"><a href="#cb166-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">as.integer</span>(week)) <span class="sc">|&gt;</span> <span class="fu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 29,484 × 4
+   Song    Artist                          week  rank
+   &lt;chr&gt;   &lt;chr&gt;                          &lt;int&gt; &lt;dbl&gt;
+ 1 Starboy The Weeknd Featuring Daft Punk     1     1
+ 2 Starboy The Weeknd Featuring Daft Punk     2     3
+ 3 Starboy The Weeknd Featuring Daft Punk     3     4
+ 4 Starboy The Weeknd Featuring Daft Punk     4     4
+ 5 Starboy The Weeknd Featuring Daft Punk     5     5
+ 6 Starboy The Weeknd Featuring Daft Punk     6     8
+ 7 Starboy The Weeknd Featuring Daft Punk     7     7
+ 8 Starboy The Weeknd Featuring Daft Punk     8    12
+ 9 Starboy The Weeknd Featuring Daft Punk     9    14
+10 Starboy The Weeknd Featuring Daft Punk    10    17
+# ℹ 29,474 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb168"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">count</span>(month, origin) <span class="sc">|&gt;</span></span>
+<span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> origin, <span class="at">values_from =</span> n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   month   EWR   JFK   LGA
+   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1     1  9893  9161  7950
+ 2     2  9107  8421  7423
+ 3     3 10420  9697  8717
+ 4     4 10531  9218  8581
+ 5     5 10592  9397  8807
+ 6     6 10175  9472  8596
+ 7     7 10475 10023  8927
+ 8     8 10359  9983  8985
+ 9     9  9550  8908  9116
+10    10 10104  9143  9642
+11    11  9707  8710  8851
+12    12  9922  9146  9067</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="lecture-6-9-11" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-6-9-11">Lecture 6: 9-11</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(<span class="st">"2025-10-1"</span>, <span class="at">label =</span> T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Wed
+Levels: Sun &lt; Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb172"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Are playlist morelikely to be created on weekends</span></span>
+<span id="cb172-2"><a href="#cb172-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-3"><a href="#cb172-3" aria-hidden="true" tabindex="-1"></a>playlist <span class="sc">|&gt;</span> </span>
+<span id="cb172-4"><a href="#cb172-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">wday =</span> <span class="fu">wday</span>(modified_at, <span class="at">label =</span> T)) <span class="sc">|&gt;</span> </span>
+<span id="cb172-5"><a href="#cb172-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(pid, modified_at, wday) <span class="sc">|&gt;</span> <span class="fu">count</span>(wday) <span class="ot">-&gt;</span> playlist_wdays</span>
+<span id="cb172-6"><a href="#cb172-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-7"><a href="#cb172-7" aria-hidden="true" tabindex="-1"></a>playlist_wdays</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  wday      n
+  &lt;ord&gt; &lt;int&gt;
+1 Sun     137
+2 Mon     141
+3 Tue     166
+4 Wed     120
+5 Thu     163
+6 Fri     157
+7 Sat     116</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Significance Test</span></span>
+<span id="cb174-2"><a href="#cb174-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-3"><a href="#cb174-3" aria-hidden="true" tabindex="-1"></a>playlist_wdays <span class="sc">|&gt;</span> <span class="fu">pluck</span>(<span class="st">"n"</span>) <span class="sc">|&gt;</span> <span class="fu">chisq.test</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  pluck(playlist_wdays, "n")
+X-squared = 16.96, df = 6, p-value = 0.009431</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb176"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Which artist appears most in playlists</span></span>
+<span id="cb176-2"><a href="#cb176-2" aria-hidden="true" tabindex="-1"></a>playlist <span class="sc">|&gt;</span> <span class="fu">left_join</span>(playlist_track, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id"</span> <span class="ot">=</span> <span class="st">"playlist_id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb176-3"><a href="#cb176-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(pid, track_id) <span class="sc">|&gt;</span></span>
+<span id="cb176-4"><a href="#cb176-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(track, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"track_id"</span> <span class="ot">=</span> <span class="st">"id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb176-5"><a href="#cb176-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(pid, artist_id) <span class="sc">|&gt;</span></span>
+<span id="cb176-6"><a href="#cb176-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(artist, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"artist_id"</span> <span class="ot">=</span> <span class="st">"id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb176-7"><a href="#cb176-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(name) <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9,614 × 2
+   name                 n
+   &lt;chr&gt;            &lt;int&gt;
+ 1 Drake              216
+ 2 Rihanna            152
+ 3 Kanye West         142
+ 4 Kendrick Lamar     132
+ 5 Ed Sheeran         121
+ 6 The Weeknd         119
+ 7 Calvin Harris      114
+ 8 Big Sean           108
+ 9 The Chainsmokers   106
+10 Post Malone        105
+# ℹ 9,604 more rows</code></pre>
+</div>
+</div>
+<section id="combn" class="level3">
+<h3 class="anchored" data-anchor-id="combn">combn()</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb178"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">combn</span>(<span class="fu">c</span>(<span class="st">"Eminem"</span>, <span class="st">"Rihanna"</span>, <span class="st">"Dr. Dre"</span>), <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]      [,2]      [,3]     
+[1,] "Eminem"  "Eminem"  "Rihanna"
+[2,] "Rihanna" "Dr. Dre" "Dr. Dre"</code></pre>
+</div>
+</div>
+</section>
+<section id="which-artist-had-the-most-top-100-hits-2017" class="level3">
+<h3 class="anchored" data-anchor-id="which-artist-had-the-most-top-100-hits-2017">Which artist had the most top 100 hits 2017</h3>
+<section id="string-split" class="level4">
+<h4 class="anchored" data-anchor-id="string-split">String split</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb180"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(<span class="st">"Beyonce &amp; Jay-Z"</span>, <span class="st">" &amp; "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "Beyonce" "Jay-Z"  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb182"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_split</span>(<span class="st">"Beyonce Featuring Jay-Z"</span>, <span class="st">" Featuring "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "Beyonce" "Jay-Z"  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb184"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>hot100_2017_long <span class="sc">|&gt;</span></span>
+<span id="cb184-2"><a href="#cb184-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">artists =</span> <span class="fu">str_split</span>(Artist, <span class="st">" (&amp;|Featuring|x) "</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb184-3"><a href="#cb184-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(artists) <span class="sc">|&gt;</span> </span>
+<span id="cb184-4"><a href="#cb184-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(artists, <span class="at">sort=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 347 × 2
+   artists            n
+   &lt;chr&gt;          &lt;int&gt;
+ 1 Kendrick Lamar   165
+ 2 Drake            159
+ 3 Future           141
+ 4 Gucci Mane       138
+ 5 Lil Uzi Vert     133
+ 6 Migos            132
+ 7 Travis Scott     124
+ 8 Khalid           120
+ 9 Ed Sheeran       119
+10 Quavo            118
+# ℹ 337 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="lecture-8-9-18" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-8-9-18">Lecture 8: 9-18</h2>
 </section>
 
 </main>
