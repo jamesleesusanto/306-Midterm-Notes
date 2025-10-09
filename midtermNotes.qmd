@@ -485,5 +485,94 @@ hot100_2017_long |>
     count(artists, sort=TRUE)
 ```
 
-## Lecture 8: 9-18
+## Lecture 9-16 (come back to later)
 
+
+## Lecture 9-25
+
+```{r}
+load("a2weather.RData")
+
+colnames(a2weather)
+```
+
+```{r}
+a2weather |>
+  filter(month == 2, year == 1893) |>
+  select(starts_with("VALUE")) |>
+  select(26:31)
+```
+
+```{r}
+a2weather_tidy
+```
+
+```{r}
+a2weather_tidy |> count(year = year(date)) |> ggplot() + 
+    geom_line(aes(x = year, y = n))
+
+```
+
+```{r}
+#Daily Temperature
+a2weather_tidy |> 
+    filter(date >= today() - ddays(30)) |> 
+    mutate(tmax = tmax * 1.8 + 32) |> 
+    ggplot() + geom_line(aes(x = date, y = tmax))
+```
+
+```{r}
+a2weather_tidy |>  
+    mutate(month = floor_date(date, "year")) |>
+    group_by(month) |>
+    summarize(tmax = mean(tmax, rm.na = T)) |>
+    ggplot(aes(x = month, y = tmax)) + 
+    geom_line() + geom_smooth(method="lm") + 
+    labs(
+        title = "Monthly Avg Temp in A2",
+        x = "Month",
+        y = "temp (C)"
+    )
+```
+
+#### Statistical Modeling
+
+Y = f(x) + $\in$
+
+Y = Outcome
+
+f = model function
+
+x = explainer
+
+$\in$ = noise
+
+### Fitting a linear regression model
+
+```{r}
+mdl <- lm(tmax ~ date, data = a2weather_tidy)
+summary(mdl)
+coef(mdl)["date"] * 365 * 100
+
+summary(mdl)$r.squared
+```
+
+### Residuals
+```{r}
+library(modelr)
+
+a2weather_tidy |>
+    add_residuals(mdl) |>
+    ggplot(aes(x = resid)) + 
+    geom_histogram() +
+    labs(
+        title = "residuals from lin regression model",
+        x = "residuals"
+    ) 
+```
+
+```{r}
+iris
+```
+
+## Lecture 9-30

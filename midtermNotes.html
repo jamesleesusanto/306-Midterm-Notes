@@ -72,6 +72,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="midtermNotes_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="midtermNotes_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -1099,16 +1128,16 @@ $ `What is your height? (use whichever units you prefer)` &lt;dbl&gt; 72.00, 170
 <pre><code># A tibble: 10 × 10
        id    pid name            collaborative modified_at num_tracks num_albums
     &lt;int&gt;  &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;         &lt;date&gt;           &lt;int&gt;      &lt;int&gt;
- 1 132011 132010 "Chill"         FALSE         2017-09-17          70         61
- 2 722568 722567 "EDM Party"     FALSE         2017-10-14         105         97
- 3 126805 126804 "Anos 2000"     FALSE         2017-10-22          74         64
- 4 433319 433318 "Acoustic Guit… FALSE         2014-08-27          91         44
- 5  60938  60937 "Q2"            FALSE         2016-09-10         208        187
- 6 732154 732153 "dub"           FALSE         2015-10-23          25         25
- 7 352226 352225 "Real Music "   FALSE         2017-07-16          43         37
- 8 151700 151699 "sampled"       FALSE         2016-12-20          12         10
- 9 118661 118660 "my fav songs"  FALSE         2017-05-11          44         29
-10 627796 627795 "First"         TRUE          2013-12-10         143         26
+ 1 581883 581882 instrumental    FALSE         2014-02-17           7          6
+ 2 952077 952076 Mix Tape        FALSE         2017-10-10          39         37
+ 3  62655  62654 Algo            FALSE         2017-03-22          35         26
+ 4  53620  53619 sad music       FALSE         2016-12-04          24         17
+ 5 886836 886835 Save Rock And … FALSE         2016-05-15          21         19
+ 6 792335 792334 Gold School     FALSE         2017-06-28         147        103
+ 7 632644 632643 One Tree Hill   FALSE         2014-07-30          47         36
+ 8  14171  14170 work out        FALSE         2015-01-13          86         54
+ 9 699456 699455 nugget          FALSE         2016-06-26           6          6
+10 502366 502365 bad mood        FALSE         2017-08-25          24         19
 # ℹ 3 more variables: num_followers &lt;int&gt;, duration_ms &lt;int&gt;, num_artists &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -1488,8 +1517,343 @@ X-squared = 16.96, df = 6, p-value = 0.009431</code></pre>
 </section>
 </section>
 </section>
-<section id="lecture-8-9-18" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-8-9-18">Lecture 8: 9-18</h2>
+<section id="lecture-9-16-come-back-to-later" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-9-16-come-back-to-later">Lecture 9-16 (come back to later)</h2>
+</section>
+<section id="lecture-9-25" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-9-25">Lecture 9-25</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb186"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"a2weather.RData"</span>)</span>
+<span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-3"><a href="#cb186-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(a2weather)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "id"      "year"    "month"   "element" "VALUE1"  "MFLAG1"  "QFLAG1" 
+  [8] "SFLAG1"  "VALUE2"  "MFLAG2"  "QFLAG2"  "SFLAG2"  "VALUE3"  "MFLAG3" 
+ [15] "QFLAG3"  "SFLAG3"  "VALUE4"  "MFLAG4"  "QFLAG4"  "SFLAG4"  "VALUE5" 
+ [22] "MFLAG5"  "QFLAG5"  "SFLAG5"  "VALUE6"  "MFLAG6"  "QFLAG6"  "SFLAG6" 
+ [29] "VALUE7"  "MFLAG7"  "QFLAG7"  "SFLAG7"  "VALUE8"  "MFLAG8"  "QFLAG8" 
+ [36] "SFLAG8"  "VALUE9"  "MFLAG9"  "QFLAG9"  "SFLAG9"  "VALUE10" "MFLAG10"
+ [43] "QFLAG10" "SFLAG10" "VALUE11" "MFLAG11" "QFLAG11" "SFLAG11" "VALUE12"
+ [50] "MFLAG12" "QFLAG12" "SFLAG12" "VALUE13" "MFLAG13" "QFLAG13" "SFLAG13"
+ [57] "VALUE14" "MFLAG14" "QFLAG14" "SFLAG14" "VALUE15" "MFLAG15" "QFLAG15"
+ [64] "SFLAG15" "VALUE16" "MFLAG16" "QFLAG16" "SFLAG16" "VALUE17" "MFLAG17"
+ [71] "QFLAG17" "SFLAG17" "VALUE18" "MFLAG18" "QFLAG18" "SFLAG18" "VALUE19"
+ [78] "MFLAG19" "QFLAG19" "SFLAG19" "VALUE20" "MFLAG20" "QFLAG20" "SFLAG20"
+ [85] "VALUE21" "MFLAG21" "QFLAG21" "SFLAG21" "VALUE22" "MFLAG22" "QFLAG22"
+ [92] "SFLAG22" "VALUE23" "MFLAG23" "QFLAG23" "SFLAG23" "VALUE24" "MFLAG24"
+ [99] "QFLAG24" "SFLAG24" "VALUE25" "MFLAG25" "QFLAG25" "SFLAG25" "VALUE26"
+[106] "MFLAG26" "QFLAG26" "SFLAG26" "VALUE27" "MFLAG27" "QFLAG27" "SFLAG27"
+[113] "VALUE28" "MFLAG28" "QFLAG28" "SFLAG28" "VALUE29" "MFLAG29" "QFLAG29"
+[120] "SFLAG29" "VALUE30" "MFLAG30" "QFLAG30" "SFLAG30" "VALUE31" "MFLAG31"
+[127] "QFLAG31" "SFLAG31"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb188"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>a2weather <span class="sc">|&gt;</span></span>
+<span id="cb188-2"><a href="#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">2</span>, year <span class="sc">==</span> <span class="dv">1893</span>) <span class="sc">|&gt;</span></span>
+<span id="cb188-3"><a href="#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"VALUE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb188-4"><a href="#cb188-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">26</span><span class="sc">:</span><span class="dv">31</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+  VALUE26 VALUE27 VALUE28 VALUE29 VALUE30 VALUE31
+    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1      -6      39      33   -9999   -9999   -9999
+2    -156     -89     -50   -9999   -9999   -9999
+3   -9999   -9999     178   -9999   -9999   -9999
+4       0       0       0   -9999   -9999   -9999</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>a2weather_tidy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48,636 × 12
+   date       station      tmin  tmax  prcp  snow  snwd tmax_flag tmin_flag
+ * &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    
+ 1 1891-10-01 USC00200230   7.8  20.6  NA      NA    NA ""        ""       
+ 2 1891-10-02 USC00200230  13.9  26.7  NA      NA    NA ""        ""       
+ 3 1891-10-03 USC00200230  16.1  26.1  NA      NA    NA ""        ""       
+ 4 1891-10-04 USC00200230  11.1  22.8   7.6    NA    NA ""        ""       
+ 5 1891-10-05 USC00200230   6.7  13.9  NA      NA    NA ""        ""       
+ 6 1891-10-06 USC00200230   5    14.4  NA      NA    NA ""        ""       
+ 7 1891-10-07 USC00200230   5.6  10.6   4.1    NA    NA ""        ""       
+ 8 1891-10-08 USC00200230   3.3  13.9  NA      NA    NA ""        ""       
+ 9 1891-10-09 USC00200230   3.9  15    NA      NA    NA ""        ""       
+10 1891-10-10 USC00200230   5    16.7  NA      NA    NA ""        ""       
+# ℹ 48,626 more rows
+# ℹ 3 more variables: prcp_flag &lt;chr&gt;, snow_flag &lt;chr&gt;, snwd_flag &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb192"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>a2weather_tidy <span class="sc">|&gt;</span> <span class="fu">count</span>(<span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">|&gt;</span> <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb192-2"><a href="#cb192-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb193"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Daily Temperature</span></span>
+<span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a>a2weather_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb193-3"><a href="#cb193-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">ddays</span>(<span class="dv">30</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb193-4"><a href="#cb193-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">tmax =</span> tmax <span class="sc">*</span> <span class="fl">1.8</span> <span class="sc">+</span> <span class="dv">32</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb193-5"><a href="#cb193-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> tmax))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-77-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb194"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a>a2weather_tidy <span class="sc">|&gt;</span>  </span>
+<span id="cb194-2"><a href="#cb194-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">month =</span> <span class="fu">floor_date</span>(date, <span class="st">"year"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb194-3"><a href="#cb194-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb194-4"><a href="#cb194-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">tmax =</span> <span class="fu">mean</span>(tmax, <span class="at">rm.na =</span> T)) <span class="sc">|&gt;</span></span>
+<span id="cb194-5"><a href="#cb194-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> tmax)) <span class="sc">+</span> </span>
+<span id="cb194-6"><a href="#cb194-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>) <span class="sc">+</span> </span>
+<span id="cb194-7"><a href="#cb194-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb194-8"><a href="#cb194-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Monthly Avg Temp in A2"</span>,</span>
+<span id="cb194-9"><a href="#cb194-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Month"</span>,</span>
+<span id="cb194-10"><a href="#cb194-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"temp (C)"</span></span>
+<span id="cb194-11"><a href="#cb194-11" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-78-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="statistical-modeling" class="level4">
+<h4 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h4>
+<p>Y = f(x) + <span class="math inline">\(\in\)</span></p>
+<p>Y = Outcome</p>
+<p>f = model function</p>
+<p>x = explainer</p>
+<p><span class="math inline">\(\in\)</span> = noise</p>
+</section>
+<section id="fitting-a-linear-regression-model" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-a-linear-regression-model">Fitting a linear regression model</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb195"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(tmax <span class="sc">~</span> date, <span class="at">data =</span> a2weather_tidy)</span>
+<span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = tmax ~ date, data = a2weather_tidy)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-35.870 -10.395   1.116  10.463  26.266 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.489e+01  5.545e-02  268.56   &lt;2e-16 ***
+date        4.307e-05  3.756e-06   11.47   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 11.73 on 48510 degrees of freedom
+  (124 observations deleted due to missingness)
+Multiple R-squared:  0.002704,  Adjusted R-squared:  0.002684 
+F-statistic: 131.5 on 1 and 48510 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb197"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb197-1"><a href="#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(mdl)[<span class="st">"date"</span>] <span class="sc">*</span> <span class="dv">365</span> <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    date 
+1.572183 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb199"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl)<span class="sc">$</span>r.squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.002704191</code></pre>
+</div>
+</div>
+</section>
+<section id="residuals" class="level3">
+<h3 class="anchored" data-anchor-id="residuals">Residuals</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb201"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelr)</span>
+<span id="cb201-2"><a href="#cb201-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb201-3"><a href="#cb201-3" aria-hidden="true" tabindex="-1"></a>a2weather_tidy <span class="sc">|&gt;</span></span>
+<span id="cb201-4"><a href="#cb201-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_residuals</span>(mdl) <span class="sc">|&gt;</span></span>
+<span id="cb201-5"><a href="#cb201-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> resid)) <span class="sc">+</span> </span>
+<span id="cb201-6"><a href="#cb201-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb201-7"><a href="#cb201-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb201-8"><a href="#cb201-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"residuals from lin regression model"</span>,</span>
+<span id="cb201-9"><a href="#cb201-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"residuals"</span></span>
+<span id="cb201-10"><a href="#cb201-10" aria-hidden="true" tabindex="-1"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb202"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a>iris</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1            5.1         3.5          1.4         0.2     setosa
+2            4.9         3.0          1.4         0.2     setosa
+3            4.7         3.2          1.3         0.2     setosa
+4            4.6         3.1          1.5         0.2     setosa
+5            5.0         3.6          1.4         0.2     setosa
+6            5.4         3.9          1.7         0.4     setosa
+7            4.6         3.4          1.4         0.3     setosa
+8            5.0         3.4          1.5         0.2     setosa
+9            4.4         2.9          1.4         0.2     setosa
+10           4.9         3.1          1.5         0.1     setosa
+11           5.4         3.7          1.5         0.2     setosa
+12           4.8         3.4          1.6         0.2     setosa
+13           4.8         3.0          1.4         0.1     setosa
+14           4.3         3.0          1.1         0.1     setosa
+15           5.8         4.0          1.2         0.2     setosa
+16           5.7         4.4          1.5         0.4     setosa
+17           5.4         3.9          1.3         0.4     setosa
+18           5.1         3.5          1.4         0.3     setosa
+19           5.7         3.8          1.7         0.3     setosa
+20           5.1         3.8          1.5         0.3     setosa
+21           5.4         3.4          1.7         0.2     setosa
+22           5.1         3.7          1.5         0.4     setosa
+23           4.6         3.6          1.0         0.2     setosa
+24           5.1         3.3          1.7         0.5     setosa
+25           4.8         3.4          1.9         0.2     setosa
+26           5.0         3.0          1.6         0.2     setosa
+27           5.0         3.4          1.6         0.4     setosa
+28           5.2         3.5          1.5         0.2     setosa
+29           5.2         3.4          1.4         0.2     setosa
+30           4.7         3.2          1.6         0.2     setosa
+31           4.8         3.1          1.6         0.2     setosa
+32           5.4         3.4          1.5         0.4     setosa
+33           5.2         4.1          1.5         0.1     setosa
+34           5.5         4.2          1.4         0.2     setosa
+35           4.9         3.1          1.5         0.2     setosa
+36           5.0         3.2          1.2         0.2     setosa
+37           5.5         3.5          1.3         0.2     setosa
+38           4.9         3.6          1.4         0.1     setosa
+39           4.4         3.0          1.3         0.2     setosa
+40           5.1         3.4          1.5         0.2     setosa
+41           5.0         3.5          1.3         0.3     setosa
+42           4.5         2.3          1.3         0.3     setosa
+43           4.4         3.2          1.3         0.2     setosa
+44           5.0         3.5          1.6         0.6     setosa
+45           5.1         3.8          1.9         0.4     setosa
+46           4.8         3.0          1.4         0.3     setosa
+47           5.1         3.8          1.6         0.2     setosa
+48           4.6         3.2          1.4         0.2     setosa
+49           5.3         3.7          1.5         0.2     setosa
+50           5.0         3.3          1.4         0.2     setosa
+51           7.0         3.2          4.7         1.4 versicolor
+52           6.4         3.2          4.5         1.5 versicolor
+53           6.9         3.1          4.9         1.5 versicolor
+54           5.5         2.3          4.0         1.3 versicolor
+55           6.5         2.8          4.6         1.5 versicolor
+56           5.7         2.8          4.5         1.3 versicolor
+57           6.3         3.3          4.7         1.6 versicolor
+58           4.9         2.4          3.3         1.0 versicolor
+59           6.6         2.9          4.6         1.3 versicolor
+60           5.2         2.7          3.9         1.4 versicolor
+61           5.0         2.0          3.5         1.0 versicolor
+62           5.9         3.0          4.2         1.5 versicolor
+63           6.0         2.2          4.0         1.0 versicolor
+64           6.1         2.9          4.7         1.4 versicolor
+65           5.6         2.9          3.6         1.3 versicolor
+66           6.7         3.1          4.4         1.4 versicolor
+67           5.6         3.0          4.5         1.5 versicolor
+68           5.8         2.7          4.1         1.0 versicolor
+69           6.2         2.2          4.5         1.5 versicolor
+70           5.6         2.5          3.9         1.1 versicolor
+71           5.9         3.2          4.8         1.8 versicolor
+72           6.1         2.8          4.0         1.3 versicolor
+73           6.3         2.5          4.9         1.5 versicolor
+74           6.1         2.8          4.7         1.2 versicolor
+75           6.4         2.9          4.3         1.3 versicolor
+76           6.6         3.0          4.4         1.4 versicolor
+77           6.8         2.8          4.8         1.4 versicolor
+78           6.7         3.0          5.0         1.7 versicolor
+79           6.0         2.9          4.5         1.5 versicolor
+80           5.7         2.6          3.5         1.0 versicolor
+81           5.5         2.4          3.8         1.1 versicolor
+82           5.5         2.4          3.7         1.0 versicolor
+83           5.8         2.7          3.9         1.2 versicolor
+84           6.0         2.7          5.1         1.6 versicolor
+85           5.4         3.0          4.5         1.5 versicolor
+86           6.0         3.4          4.5         1.6 versicolor
+87           6.7         3.1          4.7         1.5 versicolor
+88           6.3         2.3          4.4         1.3 versicolor
+89           5.6         3.0          4.1         1.3 versicolor
+90           5.5         2.5          4.0         1.3 versicolor
+91           5.5         2.6          4.4         1.2 versicolor
+92           6.1         3.0          4.6         1.4 versicolor
+93           5.8         2.6          4.0         1.2 versicolor
+94           5.0         2.3          3.3         1.0 versicolor
+95           5.6         2.7          4.2         1.3 versicolor
+96           5.7         3.0          4.2         1.2 versicolor
+97           5.7         2.9          4.2         1.3 versicolor
+98           6.2         2.9          4.3         1.3 versicolor
+99           5.1         2.5          3.0         1.1 versicolor
+100          5.7         2.8          4.1         1.3 versicolor
+101          6.3         3.3          6.0         2.5  virginica
+102          5.8         2.7          5.1         1.9  virginica
+103          7.1         3.0          5.9         2.1  virginica
+104          6.3         2.9          5.6         1.8  virginica
+105          6.5         3.0          5.8         2.2  virginica
+106          7.6         3.0          6.6         2.1  virginica
+107          4.9         2.5          4.5         1.7  virginica
+108          7.3         2.9          6.3         1.8  virginica
+109          6.7         2.5          5.8         1.8  virginica
+110          7.2         3.6          6.1         2.5  virginica
+111          6.5         3.2          5.1         2.0  virginica
+112          6.4         2.7          5.3         1.9  virginica
+113          6.8         3.0          5.5         2.1  virginica
+114          5.7         2.5          5.0         2.0  virginica
+115          5.8         2.8          5.1         2.4  virginica
+116          6.4         3.2          5.3         2.3  virginica
+117          6.5         3.0          5.5         1.8  virginica
+118          7.7         3.8          6.7         2.2  virginica
+119          7.7         2.6          6.9         2.3  virginica
+120          6.0         2.2          5.0         1.5  virginica
+121          6.9         3.2          5.7         2.3  virginica
+122          5.6         2.8          4.9         2.0  virginica
+123          7.7         2.8          6.7         2.0  virginica
+124          6.3         2.7          4.9         1.8  virginica
+125          6.7         3.3          5.7         2.1  virginica
+126          7.2         3.2          6.0         1.8  virginica
+127          6.2         2.8          4.8         1.8  virginica
+128          6.1         3.0          4.9         1.8  virginica
+129          6.4         2.8          5.6         2.1  virginica
+130          7.2         3.0          5.8         1.6  virginica
+131          7.4         2.8          6.1         1.9  virginica
+132          7.9         3.8          6.4         2.0  virginica
+133          6.4         2.8          5.6         2.2  virginica
+134          6.3         2.8          5.1         1.5  virginica
+135          6.1         2.6          5.6         1.4  virginica
+136          7.7         3.0          6.1         2.3  virginica
+137          6.3         3.4          5.6         2.4  virginica
+138          6.4         3.1          5.5         1.8  virginica
+139          6.0         3.0          4.8         1.8  virginica
+140          6.9         3.1          5.4         2.1  virginica
+141          6.7         3.1          5.6         2.4  virginica
+142          6.9         3.1          5.1         2.3  virginica
+143          5.8         2.7          5.1         1.9  virginica
+144          6.8         3.2          5.9         2.3  virginica
+145          6.7         3.3          5.7         2.5  virginica
+146          6.7         3.0          5.2         2.3  virginica
+147          6.3         2.5          5.0         1.9  virginica
+148          6.5         3.0          5.2         2.0  virginica
+149          6.2         3.4          5.4         2.3  virginica
+150          5.9         3.0          5.1         1.8  virginica</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="lecture-9-30" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-9-30">Lecture 9-30</h2>
 </section>
 
 </main>
