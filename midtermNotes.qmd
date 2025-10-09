@@ -584,11 +584,6 @@ load("weather.RData")
 a2weather
 ```
 
-```{r}
-mdl <- lm(tmax ~ date, data = a2weather) |> summary()
-a2weather |> add_residuals(mdl) |> ggplot() + 
-    geom_histogram(aes(x = resid))
-```
 
 #### Seasonal Trends
 

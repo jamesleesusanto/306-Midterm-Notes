@@ -1126,18 +1126,18 @@ $ `What is your height? (use whichever units you prefer)` &lt;dbl&gt; 72.00, 170
 <span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a>playlist <span class="sc">|&gt;</span> <span class="fu">sample_frac</span>(<span class="fl">0.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 10
-       id    pid name            collaborative modified_at num_tracks num_albums
-    &lt;int&gt;  &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;         &lt;date&gt;           &lt;int&gt;      &lt;int&gt;
- 1 775593 775592 "throwback"     FALSE         2017-10-30         235        195
- 2 821739 821738 "Nelly Furtado" FALSE         2017-03-31          25         14
- 3 387706 387705 "Cody Simpson"  FALSE         2015-01-28           6          4
- 4 206726 206725 "sad songs "    FALSE         2017-09-22          25         25
- 5 719332 719331 "Eminem"        FALSE         2017-07-23          23         14
- 6 671563 671562 "Old School Hi… FALSE         2016-02-20          26         21
- 7 869721 869720 "sad"           FALSE         2017-01-15          44         41
- 8 598423 598422 "country love … FALSE         2017-10-16          70         64
- 9  62542  62541 "gym"           FALSE         2017-09-26         115        108
-10 826024 826023 "Summer 2k17"   FALSE         2017-06-07          59         50
+       id    pid name          collaborative modified_at num_tracks num_albums
+    &lt;int&gt;  &lt;int&gt; &lt;chr&gt;         &lt;lgl&gt;         &lt;date&gt;           &lt;int&gt;      &lt;int&gt;
+ 1 653648 653647 lit           FALSE         2017-08-19         146         98
+ 2 540235 540234 Wedding Songs FALSE         2014-02-13          21         20
+ 3 887524 887523 Right Now     TRUE          2014-04-26          42         32
+ 4 954479 954478 boii          FALSE         2017-10-21          51         34
+ 5 689931 689930 kewl          FALSE         2017-05-09         179        159
+ 6 714310 714309 Jams          FALSE         2017-08-06         141        113
+ 7 234875 234874 Alternative   FALSE         2017-10-03          42         32
+ 8 496913 496912 Mix           FALSE         2017-10-31          82         79
+ 9 445365 445364 RnB           FALSE         2016-06-22          19         17
+10 591209 591208 Classical     FALSE         2017-10-23          32         31
 # ℹ 3 more variables: num_followers &lt;int&gt;, duration_ms &lt;int&gt;, num_artists &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -1698,10 +1698,125 @@ F-statistic: 131.5 on 1 and 48510 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="lecture-9-30" class="level2">
 <h2 class="anchored" data-anchor-id="lecture-9-30">Lecture 9-30</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb202"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"weather.RData"</span>) </span>
+<span id="cb202-2"><a href="#cb202-2" aria-hidden="true" tabindex="-1"></a>a2weather</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48,645 × 12
+   date       station      tmax  tmin  prcp  snow  snwd tmax_flag tmin_flag
+ * &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    
+ 1 1891-10-01 USC00200230  20.6   7.8  NA      NA    NA ""        ""       
+ 2 1891-10-02 USC00200230  26.7  13.9  NA      NA    NA ""        ""       
+ 3 1891-10-03 USC00200230  26.1  16.1  NA      NA    NA ""        ""       
+ 4 1891-10-04 USC00200230  22.8  11.1   7.6    NA    NA ""        ""       
+ 5 1891-10-05 USC00200230  13.9   6.7  NA      NA    NA ""        ""       
+ 6 1891-10-06 USC00200230  14.4   5    NA      NA    NA ""        ""       
+ 7 1891-10-07 USC00200230  10.6   5.6   4.1    NA    NA ""        ""       
+ 8 1891-10-08 USC00200230  13.9   3.3  NA      NA    NA ""        ""       
+ 9 1891-10-09 USC00200230  15     3.9  NA      NA    NA ""        ""       
+10 1891-10-10 USC00200230  16.7   5    NA      NA    NA ""        ""       
+# ℹ 48,635 more rows
+# ℹ 3 more variables: prcp_flag &lt;chr&gt;, snow_flag &lt;chr&gt;, snwd_flag &lt;chr&gt;</code></pre>
+</div>
+</div>
 <section id="seasonal-trends" class="level4">
 <h4 class="anchored" data-anchor-id="seasonal-trends">Seasonal Trends</h4>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb202"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"weather.RData"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb204"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb204-1"><a href="#cb204-1" aria-hidden="true" tabindex="-1"></a>a2weather <span class="sc">|&gt;</span> <span class="fu">colnames</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "date"      "station"   "tmax"      "tmin"      "prcp"      "snow"     
+ [7] "snwd"      "tmax_flag" "tmin_flag" "prcp_flag" "snow_flag" "snwd_flag"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb206"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb206-1"><a href="#cb206-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> a2weather <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">doy =</span> <span class="fu">yday</span>(date)) <span class="sc">|&gt;</span> </span>
+<span id="cb206-2"><a href="#cb206-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(doy) <span class="sc">|&gt;</span> </span>
+<span id="cb206-3"><a href="#cb206-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">tmax =</span> <span class="fu">mean</span>(tmax, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span></span>
+<span id="cb206-4"><a href="#cb206-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb206-5"><a href="#cb206-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> doy, <span class="at">y =</span> tmax)) <span class="sc">+</span> </span>
+<span id="cb206-6"><a href="#cb206-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb206-7"><a href="#cb206-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"avg anual temp cycle in a2"</span>,</span>
+<span id="cb206-8"><a href="#cb206-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"day of yr"</span>,</span>
+<span id="cb206-9"><a href="#cb206-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"temp(C)"</span></span>
+<span id="cb206-10"><a href="#cb206-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb206-11"><a href="#cb206-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb206-12"><a href="#cb206-12" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-83-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb207"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fu">sin</span>(x), <span class="at">color =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="midtermNotes_files/figure-html/unnamed-chunk-84-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb208"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb208-1"><a href="#cb208-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">colnames</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "year"           "month"          "day"            "dep_time"      
+ [5] "sched_dep_time" "dep_delay"      "arr_time"       "sched_arr_time"
+ [9] "arr_delay"      "carrier"        "flight"         "tailnum"       
+[13] "origin"         "dest"           "air_time"       "distance"      
+[17] "hour"           "minute"         "time_hour"     </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb210"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb210-2"><a href="#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin, carrier) <span class="sc">|&gt;</span></span>
+<span id="cb210-3"><a href="#cb210-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 3
+# Groups:   origin [3]
+   origin carrier     n
+   &lt;chr&gt;  &lt;chr&gt;   &lt;int&gt;
+ 1 EWR    9E       1268
+ 2 EWR    AA       3487
+ 3 EWR    AS        714
+ 4 EWR    B6       6557
+ 5 EWR    DL       4342
+ 6 EWR    EV      43939
+ 7 EWR    MQ       2276
+ 8 EWR    OO          6
+ 9 EWR    UA      46087
+10 EWR    US       4405
+# ℹ 25 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb212"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb212-1"><a href="#cb212-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(tmax <span class="sc">~</span> date, <span class="at">data =</span> a2weather_tidy)</span>
+<span id="cb212-2"><a href="#cb212-2" aria-hidden="true" tabindex="-1"></a>r_val <span class="ot">&lt;-</span> <span class="fu">sign</span>(<span class="fu">coef</span>(mdl)[<span class="dv">2</span>]) <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="fu">summary</span>(mdl)<span class="sc">$</span>r.squared)</span>
+<span id="cb212-3"><a href="#cb212-3" aria-hidden="true" tabindex="-1"></a>r_val</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      date 
+0.05200184 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb214"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb214-1"><a href="#cb214-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb214-2"><a href="#cb214-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(origin, carrier) <span class="sc">|&gt;</span> </span>
+<span id="cb214-3"><a href="#cb214-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 3
+# Groups:   origin [3]
+   origin carrier     n
+   &lt;chr&gt;  &lt;chr&gt;   &lt;int&gt;
+ 1 EWR    9E       1268
+ 2 EWR    AA       3487
+ 3 EWR    AS        714
+ 4 EWR    B6       6557
+ 5 EWR    DL       4342
+ 6 EWR    EV      43939
+ 7 EWR    MQ       2276
+ 8 EWR    OO          6
+ 9 EWR    UA      46087
+10 EWR    US       4405
+# ℹ 25 more rows</code></pre>
+</div>
 </div>
 </section>
 </section>
